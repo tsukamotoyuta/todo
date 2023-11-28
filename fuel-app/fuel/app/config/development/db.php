@@ -19,12 +19,12 @@
  *
  */
 
-return array(
+ return array(
 	'default' => array(
-		'connection' => array(
-			'dsn'      => 'mysql:host=localhost;dbname=fuel_dev',
-			'username' => 'root',
-			'password' => 'root',
-		),
+			'connection' => array(
+					'dsn'      => 'mysql:host=mysql;dbname=calendar',
+					'username' => 'test',
+					'password' => 'test',
+			),
 	),
 );

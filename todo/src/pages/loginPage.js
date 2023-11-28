@@ -1,59 +1,75 @@
-import React, {useEffect, useState} from "react";
+import React, { useState } from "react";
+import Header from '../components/header';
 import { useNavigate } from "react-router-dom";
 
 const SigninAPI = async (email, password, nav) => {
-  await fetch('http://localhost:8080/login', {
-    method: 'POST',
-    mode: 'cors',
-    // credentials: 'include',
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({"email": email, "password": password}),
-  }) 
-  .then(async response => {
-    // 成功
-    if (response.status === 200) {nav('home')
-      }
+  try {
+    const response = await fetch("http://localhost:8080/login", {
+      method: "POST",
+      mode: "cors",
+      credentials: 'include',
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email: email, password: password }),
+    });
 
-    } else if(response.status === 401) {
-      console.log('失敗 : ' + response.status)
+    if (response.status === 200) {
+      nav("home");
+    } else if (response.status === 401) {
+      alert("メールアドレスまたはパスワードが違います");
+      console.log("失敗 : " + response.status);
     }
-  })
-}
+  } catch (error) {
+    console.error("エラー:", error);
+  }
+};
 
 const LoginPage = () => {
-  const[email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  const nav = useNavigate()
-  const handleSigninSubmit = async() => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const nav = useNavigate();
+
+  const handleSigninSubmit = () => {
     console.log(email);
     console.log(password);
-    await SigninAPI(email, password);
+    SigninAPI(email, password, nav);
+  };
+
+  const signup = () => {
+    nav("/signup")
   };
 
   return (
-    <div>
-      <input
-            placeholder="メールアドレス"
-            type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)} />
-     <input
-            placeholder="パスワード"
-            type="text"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)} />
-            <button
-                type="button"
-                className="LoginButton"
-                onClick={handleSigninSubmit}
-              >ログイン
-            </button>
+    <><Header />
+    
+    <div className="login">
 
-    </div>
+      <input
+        placeholder="メールアドレス"
+        type="text"
+        value={email}
+        className="inputPersonalData"
+        onChange={(e) => setEmail(e.target.value)} />
+      <input
+        placeholder="パスワード"
+        type="password"
+        value={password}
+        className="inputPersonalData"
+        onChange={(e) => setPassword(e.target.value)} />
+      <button
+        type="button"
+        className="LoginButton"
+        onClick={handleSigninSubmit}
+      >
+        ログイン
+      </button>
+      <a href="/Signup"
+        onClick={signup}
+        className="SigninHref"
+      >新規登録</a>
+    </div></>
   );
-}
+};
 
 export default LoginPage;
-

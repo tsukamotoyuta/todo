@@ -1,17 +1,20 @@
-import logo from './logo.svg';
 import './App.css';
-import Test from './pages/homePage';
-import Test2 from './pages/formPage';
+import MyPage from './pages/myPage';
+import HomePage from './pages/homePage';
+import LoginPage from './pages/loginPage';
+import SignupPage from './pages/signupPage';
+import CreatePage from './pages/createPage';
 import { Route, Routes } from 'react-router-dom';
 function App() {
   return (
     <div className="App">
       <Routes>
-        <Route exact path="/" element={<Test />} />
-        <Route path="test" element={<Test2 />} />
+        <Route path='signup' element={<SignupPage />}/>
+        <Route exact path="/" element={<LoginPage />} />
+        <Route path="home" element={<HomePage />} />
+        <Route path="mypage" element={<MyPage />} />
+        <Route path="create" element={<CreatePage />} />
       </Routes>
-      
-        
     </div>
   );
 }

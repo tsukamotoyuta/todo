@@ -1,4 +1,6 @@
 .App {
+  width: 100%;
+  height: 100%;
   text-align: center;
 }
 
@@ -34,5 +36,59 @@
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+/* custom-calendar.css */
+
+
+/* CalendarのCSS */
+:root {
+  --fc-border-color: rgb(67, 67, 67);
+  --fc-small-font-size: .9em;
+  --fc-daygrid-event-dot-width: 10px;
+  --fc-event-bg-color: #565656;
+  --fc-event-font-color: #4f4f4f;
+  --fc-event-border-color: #515151;
+  .fc {
+    height: 700px;
+    width: 80%;
+    margin-left: 150px;
+    margin-right: 50px;
+  }
+  .fc .fc-toolbar-title {
+    font-size: 30px;
+    color: #37362f;
+    padding-left: 35px;
+  }
+  .fc .fc-toolbar-chunk {
+    margin-right: 0;
+  }
+  .fc .fc-toolbar-chunk .fc-button {
+    margin-top: 15px;
+    margin-right: 20px;
+    background-color: #ffffff;
+    color: #37362f;
+    border: none;
+    font-size: 15px;
+  }
+  .fc .fc-toolbar-chunk .fc-button:hover {
+    background-color: transparent;
+    border: none;
+  }
+  .fc .fc-event-title {
+    font-size: 15px;
+    color: #37362f;
+  }
+  .fc .fc-daygrid-day-number {
+    font-size: 15px;
+    color: #37362f;
+  }
+  .fc-direction-ltr .fc-daygrid-event.fc-event-end, .fc-direction-rtl .fc-daygrid-event.fc-event-start {
+    background-color: #b4cbf1;
+    text-align: center;
+  }
+  .fc .fc-daygrid-day-events {
+    color: #ffffff;
   }
 }
